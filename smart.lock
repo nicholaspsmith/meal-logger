@@ -1,0 +1,50 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "less-bootstrap-3": {},
+      "pikaday": {},
+      "moment": {},
+      "autocomplete": {},
+      "clockpicker": {},
+      "glyphicons-halflings": {}
+    },
+    "packages": {
+      "less-bootstrap-3": {
+        "git": "https://github.com/DerMambo/less-bootstrap-3.git",
+        "tag": "v0.0.1",
+        "commit": "1321ac0ebc809bc354186b96f4c28b7042e38507"
+      },
+      "pikaday": {
+        "git": "https://github.com/richsilv/Pikaday.git",
+        "tag": "v0.1.0",
+        "commit": "de333e4b405125829a3ce2d6048a4a0014c80510"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.6.0",
+        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
+      },
+      "autocomplete": {
+        "git": "https://github.com/mizzao/meteor-autocomplete.git",
+        "tag": "v0.4.5",
+        "commit": "48a706f0055939ac9e05dd619ad6d4df3dcc237d"
+      },
+      "clockpicker": {
+        "git": "https://github.com/AndrasPH/meteor-clockpicker",
+        "tag": "v0.0.2",
+        "commit": "ca94609d3e65de895992897c42e54e83afabc635"
+      },
+      "glyphicons-halflings": {
+        "git": "https://github.com/chriswessels/meteor-glyphicons-halflings.git",
+        "tag": "v1.0.2",
+        "commit": "c943b42cddb92be8218322e7d638a98ef5d10366"
+      },
+      "caret-position": {
+        "git": "https://github.com/StockBase/meteor-caret-position.git",
+        "tag": "v2.1.0-3",
+        "commit": "6028cf980f62cbf72cb2ea527091a3a31f87b8a7"
+      }
+    }
+  }
+}

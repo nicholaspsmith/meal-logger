@@ -1,0 +1,76 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>spaceRock</title>
+</head>
+
+<body>
+  <div class="container">
+  <h1>{{> date}}</h1>
+  {{> date_selector}}
+  {{> item_list}}
+  </div>
+</body>
+
+<template name="date_selector">
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="text" class="datepicker" id="datepicker" value="{{currentDate}}">
+    </div>
+    <div class="col-sm-6">
+      <div class="input-group clockpicker clearfix" id="clockpicker">
+          <div class="cover"><span class="glyphicon glyphicon-time"></span></div>
+          <input type="text" class="form-control" value="09:30">
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="item_list">
+  <div class="new-item row">
+    <div class="col-sm-3">
+      <input type="text" name="name" id="name" placeholder="Food">
+    </div>
+    <div class="col-sm-3">
+      <input type="number" name="cals" id="cals" placeholder="Calories">
+    </div>
+    <div class="col-sm-3">
+      <input type="number" name="grams" id="grams" placeholder="Protein (g)">
+    </div>
+    <div class="col-sm-3">
+      <button class="create">+</button>
+    </div>
+  </div>
+  <ul>
+  {{> requirements}}
+  {{#each items}}
+    {{> item}}
+  {{else}}
+    <p>No Items yet</p>
+  {{/each}}
+  </ul>
+</template>
+
+<template name="item">
+  <li class="{{maybe_selected}} clearfix row">
+    <span class="name col-sm-3 col-xs-12">{{name}}</span>
+    <span class="cals col-sm-3 col-xs-12"><strong>{{cals}}</strong> calories</span>
+    <span class="grams col-sm-3 col-xs-12"><strong>{{grams}}</strong> g protein</span>
+    <span class="time col-sm-3 col-xs-12">{{time}}</span>
+    <button class="clear">X</button>
+  </li>
+</template>
+
+<template name="date">
+  {{today}}
+</template>
+
+<template name="requirements">
+  <li class="clearfix row totals">
+    <span class="name col-sm-3 col-xs-12">Total</span>
+    <span class="cals col-sm-3 col-xs-12 needed" id="total_cals"><strong>{{total_cals}}</strong> / {{needed_cals}}</span>
+    <span class="grams col-sm-3 col-xs-12 needed" id="total_grams"><strong>{{total_grams}}</strong> / {{needed_grams}}</span>
+    <span class="time col-sm-3 col-xs-12"></span>
+  </li>
+</template>
