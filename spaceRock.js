@@ -6,13 +6,14 @@ var CALORIES_NEEDED = 4101; // 3054 to maintain
 var GRAMS_NEEDED = 340; //170 to maintain
 
 if (Meteor.isClient) {
-  Meteor.subscribe('days');
-  Meteor.subscribe('items');
-  Deps.autorun(function() {
-    Meteor.subscribe('todaysItems', Session.get('currentDate'));
-  });
+  Session.setDefault('currentDate', new Date());
 
-  Session.setDefault('currentDate', moment().toDate());
+  Meteor.subscribe('days');
+  Meteor.subscribe('allItems');
+  // Deps.autorun(function() {
+  //   Meteor.subscribe('thisWeeksMeals', Session.get('currentDate'));
+  // });
+
 
   Template.date.today = function() {
     return moment(Session.get('currentDate')).format('MMMM Do YYYY');
@@ -105,12 +106,10 @@ if (Meteor.isClient) {
     $('#clockpicker').clockpicker()
       .find('input').change(function() {
         var newTime = moment($(this).val(), 'hh:mm');
-        // $('#clockpicker .form-control').val(newTime.format('hh:mm a'));
         var hour = +newTime.format('HH');
         var minute = +newTime.format('mm');
         Session.set('currentDate', moment(Session.get('currentDate')).hour(hour).minute(minute).toDate());
       });
-    // $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
   };
 
   Template.date_selector.currentDate = function () {
@@ -127,11 +126,9 @@ if (Meteor.isClient) {
       minute = now.format('mm');
       hour = now.format('HH');
       Session.set('currentDate', moment($(e.target).val()).hour(hour).minute(minute).toDate());
-      // $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
     },
     'click #resetTime' : function (e) {
       Session.set('currentDate', moment().toDate());
-      // $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
     }
   }
 }
@@ -143,22 +140,18 @@ if (Meteor.isServer) {
       return Days.find();
     });
 
-    Meteor.publish('items', function () {
-      return Items.find({
-        date: {
-          $gte: moment().subtract('days', 7).startOf('day'),
-          $lte: moment().endOf('day')
-        }
-      });
+    Meteor.publish('allItems', function () {
+      return Items.find();
     });
 
-    Meteor.publish('todaysItems', function (date) {
-      return Items.find({
-        date: {
-          $gte: moment(date).startOf('day').toDate(),
-          $lte: moment(date).endOf('day').toDate()
-        }
-      });
-    });
+    // Meteor.publish('thisWeeksMeals', function (date) {
+    //   // Fetch meals for the past seven days (including today)
+    //   return Items.find({
+    //     date : {
+    //       $gte: moment(date).subtract(7,'days').startOf('day').toDate(),
+    //       $lte: moment(date).endOf('day').toDate()
+    //     }
+    //   }, {sort: {date: -1}});
+    // });
   });
 }
