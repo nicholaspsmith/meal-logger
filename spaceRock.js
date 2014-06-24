@@ -58,12 +58,11 @@ if (Meteor.isClient) {
         Items.remove(this._id);
       }
     },
-    'click .create': function () {
-      var name = $('#name').val();
-      var cals = $('#cals').val();
-      var grams = $('#grams').val();
+    'click .create': function (event, template) {
+      var name = template.find('#name').value;
+      var cals = template.find('#cals').value;
+      var grams = template.find('#grams').value;
       var date = Session.get('currentDate');
-      date.setHour($('#timePicker').val());
       $("#name").val('');
       $("#cals").val('');
       $("#grams").val('');
@@ -107,11 +106,13 @@ if (Meteor.isClient) {
     var picker = new Pikaday({ field: document.getElementById('datepicker') });
     $('#clockpicker').clockpicker()
       .find('input').change(function() {
-        var newTime = moment($(this).val(), 'hh:mm').format('hh:mm a');
-        $('#clockpicker .form-control').val(newTime);
+        var newTime = moment($(this).val(), 'hh:mm');
+        $('#clockpicker .form-control').val(newTime.format('hh:mm a'));
+        var hour = +newTime.format('HH');
+        var minute = +newTime.format('mm');
+        Session.set('currentDate', moment(Session.get('currentDate')).hour(hour).minute(minute).toDate());
       });
-    $('#clockpicker .form-control').val(moment(this.date).format('hh:mm a'));
-    $('.cover').on('click',function(){$(this).slideUp()});
+    $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
   };
 
   Template.date_selector.currentDate = function () {
@@ -120,13 +121,17 @@ if (Meteor.isClient) {
 
   Template.date_selector.events = {
     'change #datepicker' : function (e) {
-      Session.set('currentDate', moment($(e.target).val()).toDate());
+      var now = moment();
+      minute = now.format('mm');
+      hour = now.format('HH');
+      Session.set('currentDate', moment($(e.target).val()).hour(hour).minute(minute).toDate());
+      $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
     },
-    'click .cover' : function (e) {
-      return false;
+    'click #resetTime' : function (e) {
+      Session.set('currentDate', moment().toDate());
+      $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
     }
   }
-
 }
 
 if (Meteor.isServer) {
