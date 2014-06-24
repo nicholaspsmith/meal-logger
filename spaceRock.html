@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>spaceRock</title>
+  <title>Space Rock!</title>
 </head>
 
 <body>
@@ -12,6 +12,10 @@
   {{> item_list}}
   </div>
 </body>
+
+<template name="date">
+  {{today}}
+</template>
 
 <template name="date_selector">
   <div class="row">
@@ -62,9 +66,6 @@
   </li>
 </template>
 
-<template name="date">
-  {{today}}
-</template>
 
 <template name="requirements">
   <li class="clearfix row totals">
