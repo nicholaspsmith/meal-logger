@@ -5,13 +5,11 @@ Days = new Meteor.Collection('days');
 var CALORIES_NEEDED = 4101; // 3054 to maintain
 var GRAMS_NEEDED = 340; //170 to maintain
 
-var currentId = 0;
-
 if (Meteor.isClient) {
   Meteor.subscribe('days');
   Meteor.subscribe('items');
   Deps.autorun(function() {
-    Meteor.subscribe('currentDay', Session.get('currentDate'));
+    Meteor.subscribe('todaysItems', Session.get('currentDate'));
   });
 
   Session.setDefault('currentDate', moment().toDate());
@@ -107,16 +105,20 @@ if (Meteor.isClient) {
     $('#clockpicker').clockpicker()
       .find('input').change(function() {
         var newTime = moment($(this).val(), 'hh:mm');
-        $('#clockpicker .form-control').val(newTime.format('hh:mm a'));
+        // $('#clockpicker .form-control').val(newTime.format('hh:mm a'));
         var hour = +newTime.format('HH');
         var minute = +newTime.format('mm');
         Session.set('currentDate', moment(Session.get('currentDate')).hour(hour).minute(minute).toDate());
       });
-    $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
+    // $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
   };
 
   Template.date_selector.currentDate = function () {
     return moment(Session.get('currentDate')).format('YYYY-MM-DD');
+  };
+
+  Template.date_selector.currentTime = function () {
+    return moment(Session.get('currentDate')).format('hh:mm a');
   };
 
   Template.date_selector.events = {
@@ -125,11 +127,11 @@ if (Meteor.isClient) {
       minute = now.format('mm');
       hour = now.format('HH');
       Session.set('currentDate', moment($(e.target).val()).hour(hour).minute(minute).toDate());
-      $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
+      // $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
     },
     'click #resetTime' : function (e) {
       Session.set('currentDate', moment().toDate());
-      $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
+      // $('#clockpicker .form-control').val(moment(Session.get('currentDate')).format('hh:mm a'));
     }
   }
 }
@@ -144,12 +146,13 @@ if (Meteor.isServer) {
     Meteor.publish('items', function () {
       return Items.find({
         date: {
-          $gte: moment().subtract('days', 7).startOf('day')
+          $gte: moment().subtract('days', 7).startOf('day'),
+          $lte: moment().endOf('day')
         }
       });
     });
 
-    Meteor.publish('currentDay', function (date) {
+    Meteor.publish('todaysItems', function (date) {
       return Items.find({
         date: {
           $gte: moment(date).startOf('day').toDate(),

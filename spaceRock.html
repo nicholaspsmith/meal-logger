@@ -16,12 +16,12 @@
 <template name="date_selector">
   <div class="row">
     <div class="col-sm-6">
-      <input type="text" class="datepicker" id="datepicker" value="{{currentDate}}">
+      <input type="text" class="datepicker" id="datepicker" value="{{currentDate}}" readonly="true">
     </div>
     <div class="col-sm-6">
       <div class="input-group clockpicker clearfix" id="clockpicker">
         <span class="glyphicon glyphicon-time" id="resetTime"></span>
-        <input type="text" class="form-control" value="09:30">
+        <input type="text" class="form-control" value="{{currentTime}}" readonly="true">
       </div>
     </div>
   </div>
