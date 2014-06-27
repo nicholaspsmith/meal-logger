@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 1.9.7 (Linux)" package="" timestamp="2014-06-25T20:14:00" id="0" hostname="nico.fm.internal" tests="1" errors="1" failures="1" time="0.006">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
+    </properties>
+    <testcase name="returns the current day in MMMM Do YYYY format" time="0.006" classname="PhantomJS 1.9.7 (Linux).Template_date_today">
+      <failure type="">ReferenceError: Can&apos;t find variable: moment
+    at /home/nsmith/Documents/meteor_apps/spaceRock/test/unit/client/spaceRock.js:16
+    at /home/nsmith/Documents/meteor_apps/spaceRock/node_modules/karma-jasmine/lib/adapter.js:166
+    at http://localhost:9876/karma.js:233
+    at http://localhost:9876/context.html:44
+</failure>
+    </testcase>
+    <system-out><![CDATA[
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

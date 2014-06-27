@@ -1,0 +1,149 @@
+@import 'packages/less-bootstrap-3/lib/less/bootstrap.import.less';
+
+h1 {
+  text-align: center;
+}
+.selected {
+  background: rgba(81,192,255,0.8);
+}
+
+.glyphicon-time {
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  z-index: 3;
+  font-size: 30px;
+}
+.clockpicker-button {
+  height: 50px;
+  color: #33AAFF;
+  font-size: 20px;
+  background: #dfdfdf;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+}
+.datepicker,
+.clockpicker {
+  margin: 0 auto;
+  display: block;
+  background: #dfdfdf;
+  font-size: 20px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 24px;
+  text-align: center;
+  color: #33AAFF;
+  cursor: pointer;
+  width: 280px;
+}
+.datepicker {
+  margin-bottom: 20px;
+}
+.clockpicker .form-control {
+    cursor: pointer;
+    font-size: 20px;
+    background: #dfdfdf;
+    color: #33aaff;
+    text-align: center;
+    border: none;
+    box-shadow: none;
+    z-index: 1;
+}
+.clockpicker-popover {
+  width: 100%;
+}
+.clockpicker-plate {
+  margin: 0 auto;
+}
+.pika-single {
+  width: 280px;
+}
+.pika-button {
+  padding: 11px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 5px 12px;
+    cursor: pointer;
+    background: #ddd;
+    margin: 0 10px 15px;
+    text-align: left;
+    border-radius: 8px;
+    transition: all .3s ease-in-out;
+    position: relative;
+    font-size: 18px;
+    text-align: center;
+    &:hover {
+      background: rgba(81,192,255,0.4);
+    }
+  }
+}
+.name {
+  font-weight: bolder;
+}
+.new-item {
+  margin: 20px 0;
+  background: aliceblue;
+  line-height: 70px;
+  text-align: center;
+  border-radius: 8px;
+}
+.clear {
+  float: right;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 900;
+  font-family: sans-serif;
+  font-size: 19px;
+  background: #FF1800;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 16%;
+}
+
+@media (min-width: 768px) {
+  .clear {
+    width: 8%;
+  }
+}
+.clear:hover {
+  background: black;
+  color: white;
+}
+.needed {
+  color: #FF1800;
+}
+.met {
+  color: #33AAFF;
+}
+.create {
+  width: 90%;
+  font-size: 50px;
+  color: #33AAFF;
+  border-radius: 12px;
+  border: none;
+  margin: 10px 0;
+  background: #dfdfdf;
+}
+.new-item input {
+  width: 90%;
+  margin: 10px 0;
+  border-radius: 12px;
+  font-size: 25px;
+  padding-left: 5px;
+  border: none;
+}

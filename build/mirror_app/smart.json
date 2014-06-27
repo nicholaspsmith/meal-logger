@@ -1,0 +1,11 @@
+{
+  "packages": {
+    "less-bootstrap-3": {},
+    "pikaday": {},
+    "moment": {},
+    "autocomplete": {},
+    "clockpicker": {},
+    "glyphicons-halflings": {},
+    "moment-timezone": {}
+  }
+}
