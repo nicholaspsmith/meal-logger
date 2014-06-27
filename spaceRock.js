@@ -6,9 +6,17 @@ var CALORIC_MINIMUM = 3054;
 var GRAMS_NEEDED = 340; //170 to maintain
 var PROTEIN_MINIMUM = 170;
 
+var timeLocked = false;
+
 if (Meteor.isClient) {
   // Default Date is right now
   Session.setDefault('currentDate', new Date());
+
+  setInterval(function() {
+    if (!timeLocked) {
+      Session.set('currentDate', new Date());
+    }
+  }, 20000);
 
   // Client subscribed channels
   Meteor.subscribe('days');
@@ -49,6 +57,8 @@ if (Meteor.isClient) {
       minute = now.format('mm');
       hour = now.format('HH');
       Session.set('currentDate', moment($(e.target).val()).hour(hour).minute(minute).toDate());
+      timeLocked = true;
+      setTimeout(function(){timeLocked = false;}, 20000);
     },
     'click #resetTime' : function (e) {
       Session.set('currentDate', moment().toDate());
