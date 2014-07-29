@@ -12,8 +12,8 @@
     "packages": {
       "less-bootstrap-3": {
         "git": "https://github.com/DerMambo/less-bootstrap-3.git",
-        "tag": "v0.0.1",
-        "commit": "1321ac0ebc809bc354186b96f4c28b7042e38507"
+        "tag": "v0.0.2",
+        "commit": "b5010b2ff9e9ae6b0e6e13eb0f6c81c9cb84373e"
       },
       "pikaday": {
         "git": "https://github.com/richsilv/Pikaday.git",

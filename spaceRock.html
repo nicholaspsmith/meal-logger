@@ -6,11 +6,10 @@
 </head>
 
 <body>
-  <div class="container">
-  <h1>{{> date}}</h1>
+  <h1 class="container">{{> date}}</h1>
+  <!-- {{> help}} -->
   {{> date_selector}}
   {{> item_list}}
-  </div>
 </body>
 
 <template name="date">
@@ -18,7 +17,7 @@
 </template>
 
 <template name="date_selector">
-  <div class="row">
+  <div class="row container date-time">
     <div class="col-sm-6">
       <input type="text" class="datepicker" id="datepicker" value="{{currentDate}}" readonly="true">
     </div>
@@ -32,7 +31,7 @@
 </template>
 
 <template name="item_list">
-  <div class="new-item row">
+  <div class="new-item row container">
     <div class="col-sm-3">
       <input type="text" name="name" id="name" placeholder="Food">
     </div>
@@ -46,12 +45,12 @@
       <button class="create">+</button>
     </div>
   </div>
-  <ul>
+  <ul class="container">
   {{> requirements}}
   {{#each items}}
     {{> item}}
   {{else}}
-    <p>No Items yet</p>
+    <p>Eat some food!</p>
   {{/each}}
   </ul>
 </template>
@@ -70,8 +69,25 @@
 <template name="requirements">
   <li class="clearfix row totals">
     <span class="name col-sm-3 col-xs-12">Total</span>
-    <span class="cals col-sm-3 col-xs-12 needed" id="total_cals"><strong>{{total_cals}}</strong> / {{needed_cals}}</span>
-    <span class="grams col-sm-3 col-xs-12 needed" id="total_grams"><strong>{{total_grams}}</strong> / {{needed_grams}}</span>
+    <span class="cals col-sm-3 col-xs-12" id="total_cals"><strong>{{total_cals}}</strong> / {{needed_cals}}</span>
+    <span class="grams col-sm-3 col-xs-12" id="total_grams"><strong>{{total_grams}}</strong> / {{needed_grams}}</span>
     <span class="time col-sm-3 col-xs-12"></span>
   </li>
+</template>
+
+<template name="help">
+	<button id="showHelp">?</button>
+	<div class="modal-overlay visible">
+		<div class="modal-message">
+			<button id="hideHelp">X</button>
+			<h1>Application Help</h1>
+			<p>SpaceRock is a simple application for logging the number of calories and grams of protein you eat per day.</p>
+			<p>Requirements are color coded:</p>
+			<ul>
+				<li class="red">Red - Requirement not yet fulfilled</li>
+				<li class="yellow">Yellow - Minimum requirement met</li>
+				<li class="green">Green - Requirement Fulfilled</li>
+			</ul>
+		</div>
+	</div>
 </template>

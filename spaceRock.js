@@ -1,7 +1,7 @@
 Items = new Meteor.Collection('items');
 Days = new Meteor.Collection('days');
 
-var CALORIES_NEEDED = 4101; // 3054 to maintain
+var CALORIES_NEEDED = 4000; // 3054 to maintain
 var CALORIC_MINIMUM = 3054;
 var GRAMS_NEEDED = 340; //170 to maintain
 var PROTEIN_MINIMUM = 170;
@@ -136,17 +136,37 @@ if (Meteor.isClient) {
     }
   };
 
+  Template.help.events = {
+  	'click #showHelp': function() {
+  		$(".container").toggleClass('blurred');
+  	},
+  	'click #hideHelp': function() {
+  		$(".container").toggleClass('blurred');
+  	}
+  }
+
 // AUTORUN //
   Deps.autorun(function(){
     if (Template.requirements.total_cals() >= CALORIC_MINIMUM) {
-      $('#total_cals').addClass('met');
+      $('body').addClass('min_cals_met');
     } else {
-      $('#total_cals').removeClass('met');
+      $('body').removeClass('min_cals_met');
     }
-    if (Template.requirements.total_grams() >= PROTEIN_MINIMUM) {
-      $('#total_grams').addClass('met');
+    if (Template.requirements.total_cals() >= CALORIES_NEEDED) {
+      $('body').addClass('cals_met');
     } else {
-      $('#total_grams').removeClass('met');
+      $('body').removeClass('cals_met');
+    }
+
+    if (Template.requirements.total_grams() >= PROTEIN_MINIMUM) {
+      $('body').addClass('min_grams_met');
+    } else {
+      $('body').removeClass('min_grams_met');
+    }
+    if (Template.requirements.total_grams() >= GRAMS_NEEDED) {
+      $('body').addClass('grams_met');
+    } else {
+      $('body').removeClass('grams_met');
     }
   });
 }

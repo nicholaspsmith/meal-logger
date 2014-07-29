@@ -1,12 +1,27 @@
 @import 'packages/less-bootstrap-3/lib/less/bootstrap.import.less';
 
+@red: #FF1800;
+
+.container {
+	.transition(all .4s ease-in-out);
+}
+.container.blurred {
+	-webkit-filter: blur(10px);
+	-moz-filter: blur(10px);
+	-o-filter: blur(10px);
+	-ms-filter: blur(10px);
+	filter: blur(10px);
+	opacity: 0.2;
+}
 h1 {
   text-align: center;
 }
 .selected {
   background: rgba(81,192,255,0.8);
 }
-
+.date-time {
+	margin: 0 auto;
+}
 .glyphicon-time {
   position: absolute;
   left: 15px;
@@ -16,9 +31,9 @@ h1 {
 }
 .clockpicker-button {
   height: 50px;
-  color: #33AAFF;
+  color: #02FF00;
   font-size: 20px;
-  background: #dfdfdf;
+  background: #000;
   border-radius: 50px;
   margin-bottom: 10px;
   margin-left: 5%;
@@ -29,15 +44,15 @@ h1 {
 .clockpicker {
   margin: 0 auto;
   display: block;
-  background: #dfdfdf;
+  background: #000;
   font-size: 20px;
   padding: 8px 20px;
   border: none;
   border-radius: 24px;
   text-align: center;
-  color: #33AAFF;
+  color: #02FF00;
   cursor: pointer;
-  width: 280px;
+  max-width: 280px;
 }
 .datepicker {
   margin-bottom: 20px;
@@ -45,8 +60,8 @@ h1 {
 .clockpicker .form-control {
     cursor: pointer;
     font-size: 20px;
-    background: #dfdfdf;
-    color: #33aaff;
+    background: #000;
+    color: #02FF00;
     text-align: center;
     border: none;
     box-shadow: none;
@@ -72,7 +87,7 @@ ul {
   li {
     padding: 5px 12px;
     cursor: pointer;
-    background: #ddd;
+    background: #676767;
     margin: 0 10px 15px;
     text-align: left;
     border-radius: 8px;
@@ -81,7 +96,8 @@ ul {
     font-size: 18px;
     text-align: center;
     &:hover {
-      background: rgba(81,192,255,0.4);
+      // background: rgb(0, 163, 255);
+      background: #000;
     }
   }
 }
@@ -89,11 +105,14 @@ ul {
   font-weight: bolder;
 }
 .new-item {
-  margin: 20px 0;
-  background: aliceblue;
+	margin: 20px auto;
   line-height: 70px;
   text-align: center;
-  border-radius: 8px;
+  @media (max-width: @screen-sm-min) {
+	  div input {
+	  	border: 1px dotted black;
+	  }
+  }
 }
 .clear {
   float: right;
@@ -124,20 +143,16 @@ ul {
   background: black;
   color: white;
 }
-.needed {
-  color: #FF1800;
-}
-.met {
-  color: #33AAFF;
-}
 .create {
-  width: 90%;
-  font-size: 50px;
-  color: #33AAFF;
-  border-radius: 12px;
-  border: none;
-  margin: 10px 0;
-  background: #dfdfdf;
+width: 100%;
+font-size: 40px;
+line-height: 40px;
+color: #000;
+border-radius: 12px;
+border: 1px solid #000;
+background: transparent;
+padding-top: 0;
+height: 80px;
 }
 .new-item input {
   width: 90%;
@@ -147,3 +162,56 @@ ul {
   padding-left: 5px;
   border: none;
 }
+
+.totals,
+.name,
+.time {
+	color: white;
+}
+
+.cals, .grams {
+  color: #FF1800;
+}
+
+.min_cals_met .cals,
+.min_grams_met .grams {
+	color: yellow;
+}
+
+.cals_met .cals,
+.grams_met .grams {
+	color: #02FF00;
+}
+
+// Modal
+.modal-overlay {
+	z-index: 999;
+	// display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: transparent;
+	.transition(all .2s ease-in-out);
+	&.visible {
+		background: rgba(0, 0, 0, 0.2);
+	}
+	.modal-message {
+		// display: none;
+		color: #eee;
+		// background: rgba(255, 255, 255, 0.59);
+		padding: 20px;
+		button {
+			color: @red;
+		}
+	}
+	.red {
+		color: @red;
+	}
+}
+
+#showHelp {
+	z-index: 1000;
+}
+
